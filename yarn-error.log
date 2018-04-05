@@ -1,5 +1,5 @@
 Arguments: 
-  /home/student/.nvm/versions/node/v8.10.0/bin/node /usr/share/yarn/bin/yarn.js start
+  /home/student/.nvm/versions/node/v8.10.0/bin/node /usr/share/yarn/bin/yarn.js knex sqlite3
 
 PATH: 
   /home/student/.nvm/versions/node/v8.10.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
@@ -30,7 +30,7 @@ npm manifest:
     "dependencies": {
       "express": "^4.16.2",
       "express-handlebars": "^3.0.0",
-      "knex": "^0.14.2",
+      "knex": "^0.14.4",
       "sqlite3": "^3.1.13"
     },
     "devDependencies": {
@@ -38,7 +38,7 @@ npm manifest:
       "jest": "^22.1.4",
       "nodemon": "^1.14.11",
       "supertest": "^3.0.0"
-  }
+    }
   }
 
 yarn manifest: 
@@ -2532,7 +2532,7 @@ Lockfile:
     version "6.0.2"
     resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   
-  knex@^0.14.2:
+  knex@^0.14.4:
     version "0.14.4"
     resolved "https://registry.yarnpkg.com/knex/-/knex-0.14.4.tgz#d974b7e0355244260c703731c8d90f662bfe798a"
     dependencies:
@@ -4399,7 +4399,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c node index
+  Arguments: -c knex sqlite3
   Directory: /home/student/workspace/whakapapa
   Output:
   
