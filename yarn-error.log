@@ -1,5 +1,5 @@
 Arguments: 
-  /home/student/.nvm/versions/node/v8.10.0/bin/node /usr/share/yarn/bin/yarn.js knex sqlite3
+  /home/student/.nvm/versions/node/v8.10.0/bin/node /usr/share/yarn/bin/yarn.js knex seed:run
 
 PATH: 
   /home/student/.nvm/versions/node/v8.10.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
@@ -4399,7 +4399,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c knex sqlite3
+  Arguments: -c knex seed:run
   Directory: /home/student/workspace/whakapapa
   Output:
   
