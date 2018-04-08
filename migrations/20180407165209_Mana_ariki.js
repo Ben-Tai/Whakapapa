@@ -7,7 +7,7 @@ exports.up = (knex, Promise) => {
       table.integer('parent_id')
       table.string('gender')
       table.string('partner_name')
-      table.string('user_name')
+      table.string('name')
     })
   }
   

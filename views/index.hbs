@@ -1,8 +1,17 @@
-<h1>Hello world</h1>
 <div class="container">
-  {{#each people}}
-  <div class="people-list">
-    {{user_name}}<a href="/people/{{id}}/edit"><img class="img-circle" src="" alt="{{name}}">{{user_name}}</a>
-  </div>
-  {{/each}}
+{{#each people}}
+    <div class="people-list">
+        
+        {{!-- <span class="name"> <a href="/people/{{id}}"></a>{{name}}</span> --}}
+        <a href="/people/{{id}}"><img class="img-circle" src="{{image}}" alt="{{name}}"></a>
+        
+    </div>
+{{/each}}
+    {{!-- <div class="people">
+        
+        <span class="name"> <a href="/people/{{id}}"></a>{{name}}</span>
+        <a href="/people/{{id}}"><img class="img-circle" src="{{image}}" alt="{{name}}"></a>
+       
+    </div> --}}
+  {{!-- show a row for each child of --}}
 </div>

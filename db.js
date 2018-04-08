@@ -3,11 +3,29 @@ const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 
 module.exports = {
-  getPeople
+  getPeople,getPerson,getChildren
 
 }
-//gets all users
+//gets people
 function getPeople (testConn) {
   const conn = testConn || connection
   return conn('manaariki').select()
 }
+
+//get person
+function getPerson (id,testConn) {
+    const conn = testConn || connection
+    return conn('profile')
+    .join('manaariki', 'profile.id', 'manaariki.profile_id') 
+    .where('manaariki.id', id)
+    .select()
+}
+
+function getChildren(id, testConn){
+  const conn = testConn || connection
+    return conn('manaariki')
+    // .join('manaariki AS mana', 'manaariki.id', 'mana.parent_id') 
+    .where('manaariki.parent_id', id)
+    .select()
+}
+

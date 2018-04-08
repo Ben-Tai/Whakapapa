@@ -1,0 +1,10 @@
+<div class="app">
+  <img class="img-circle" src="{{person.image}}" alt="{{person.name}}">
+  <h2>{{person.name}}</h2>
+  <div>Born: {{person.born}}</div>
+  <div>Passed:{{person.died}}</div>
+  <div>{{person.name}} is from: {{person.address}}</div>
+  {{#each children}}
+  <div>{{name}}</div>
+  {{/each}}
+</div>
