@@ -1,17 +1,13 @@
 <div class="container">
+
+{{!-- create row where parent_id matches id above--}}
+
 {{#each people}}
     <div class="people-list">
-        
-        {{!-- <span class="name"> <a href="/people/{{id}}"></a>{{name}}</span> --}}
         <a href="/people/{{id}}"><img class="img-circle" src="{{image}}" alt="{{name}}"></a>
-        
+        <a class="name" href="/people/{{id}}">{{name}}</a>
+        <a class="new" href="/people/{{id}}/new"> + new child</a>
     </div>
 {{/each}}
-    {{!-- <div class="people">
-        
-        <span class="name"> <a href="/people/{{id}}"></a>{{name}}</span>
-        <a href="/people/{{id}}"><img class="img-circle" src="{{image}}" alt="{{name}}"></a>
-       
-    </div> --}}
-  {{!-- show a row for each child of --}}
+{{!-- show a row for each child of --}}
 </div>

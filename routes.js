@@ -16,14 +16,23 @@ router.get('/people/:id', (req,res) =>{
     var id = req.params.id
     db.getPerson(id)
     .then(person =>{
-        console.log("this is the id: " + person[0].id)
-        db.getChildren(person[0].id)
+        console.log("this is the id: " + person.id)
+        db.getChildren(person.id)
         .then(children =>{
         console.log(children)
         
         res.render('profile', {person:person,children:children})
-        console.log(person)
+        console.log({person:person})
         })
     })
 })
+
+router.get('/people/:id/new', (req,res) =>{
+    var id = req.params.id
+    db.getPerson(id)
+    .then(person =>{
+    res.render('new', person)
+    })
+})
+
 module.exports = router

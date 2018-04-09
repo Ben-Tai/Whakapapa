@@ -19,6 +19,7 @@ function getPerson (id,testConn) {
     .join('manaariki', 'profile.id', 'manaariki.profile_id') 
     .where('manaariki.id', id)
     .select()
+    .first()
 }
 
 function getChildren(id, testConn){
