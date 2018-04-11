@@ -1,26 +1,45 @@
 {
   "name": "whakapapa",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A free family tree building app",
+  "main": "server/index.js",
   "repository": "https://github.com/Ben-Tai/Whakapapa.git",
   "author": "ben-tai <jamin.tairea@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "knex": "knex",
-    "dev": "nodemon index",
-    "start": "node index",
+    "start": "webpack && node server",
+    "dev": "node server & webpack --watch",
     "test": "jest --watchAll"
   },
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
+  },
+  "jest": {
+    "setupFiles": [
+      "./tests/setup.js"
+    ]
+  },
   "dependencies": {
-    "express": "^4.16.2",
-    "express-handlebars": "^3.0.0",
-    "knex": "^0.14.4",
-    "sqlite3": "^3.1.13"
+    "express": "^4.16.2"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
     "cheerio": "^1.0.0-rc.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.1.4",
     "nodemon": "^1.14.11",
-    "supertest": "^3.0.0"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "supertest": "^3.0.0",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }
