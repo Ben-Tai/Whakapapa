@@ -1,18 +1,23 @@
 import React from 'react'
 import { HashRouter  as Router, Route, Link} from 'react-router-dom'
 import people from '../data/people'
+import db from '../../utils/db'
+
+import Profile from './Profile'
+import People from './People'
+import Modal from './Modal'
 
 const App = () => {
-
-  console.log({people})
 
   return (
     <Router>
       <div>
-         <h1 className="title">Your Whakapapa</h1>
-         {people.tairea.map(person => {
-              return <li><Link to={person.name + '/profile'}> {person.name}</Link></li>
-              })}
+        <h1 className="title">Your Whakapapa</h1>
+        <div>
+          <Route exact path='/' component={(props) => <People people={props}/> }/>
+          <Route exact path='/:id/profile' component={(props) => <Profile person={props}/>}/>
+          <Modal ref={(node) => { this.modal =node}} />
+        </div>
       </div>
     </Router>
   )

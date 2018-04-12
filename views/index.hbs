@@ -4,7 +4,9 @@
 
 {{#each people}}
     <div class="people-list">
-        <a href="/people/{{id}}"><img class="img-circle" src="{{image}}" alt="{{name}}"></a>
+        <a href="/people/{{id}}">
+        <img class="img-circle" src="{{image}}" alt="{{name}}">
+        </a>
         <a class="name" href="/people/{{id}}">{{name}}</a>
         <a class="new" href="/people/{{id}}/new"> + new child</a>
     </div>
