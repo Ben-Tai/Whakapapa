@@ -5,7 +5,7 @@ import db from '../../utils/db'
 
 import Profile from './Profile'
 import People from './People'
-import Modal from './Modal'
+
 
 const App = () => {
 
@@ -16,7 +16,6 @@ const App = () => {
         <div>
           <Route exact path='/' component={(props) => <People people={props}/> }/>
           <Route exact path='/:id/profile' component={(props) => <Profile person={props}/>}/>
-          <Modal ref={(node) => { this.modal =node}} />
         </div>
       </div>
     </Router>

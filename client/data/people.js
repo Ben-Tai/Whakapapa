@@ -1,6 +1,6 @@
 const people = {
     tairea:[
-    {id: 1, profile_id:101, gen:1, parent_id:'',  gender:'m', partner_name:'Ake Tongareau',  name:'Mana Ariki',image:'https://upload.wikimedia.org/wikipedia/commons/b/b2/Patepou.jpg'},
+    {id: 1, profile_id:101, gen:1, parent_id:0,  gender:'m', partner_name:'Ake Tongareau',  name:'Mana Ariki',image:'https://upload.wikimedia.org/wikipedia/commons/b/b2/Patepou.jpg'},
 
     {id: 2, profile_id:102, gen:2, parent_id:1,  gender:'m', partner_name:'', name:'Marukoi',image:'/images/male.svg'},
     {id: 3, profile_id:103, gen:2, parent_id:1,  gender:'m', partner_name:'', name:'Tarangariki',image:'/images/male.svg'},
