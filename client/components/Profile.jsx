@@ -1,6 +1,4 @@
 import React from 'react'
-import { HashRouter  as Router, Route, Link} from 'react-router-dom'
-import people from '../data/people'
 
 const Profile = (props) => {
 

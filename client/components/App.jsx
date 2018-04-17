@@ -1,28 +1,57 @@
 import React from 'react'
-import { HashRouter  as Router, Route, Link} from 'react-router-dom'
-import people from '../data/people'
-import db from '../../utils/db'
+// import { HashRouter  as Router, Route, Link} from 'react-router-dom'
 
 import Profile from './Profile'
-import People from './People'
+import PeopleList from './PeopleList'
 
+import {getPeople} from '../api/api'
 
-const App = () => {
+export default class App extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      error:null,
+      people: [],
+      errorMessage: ''
+    }
+
+    this.refreshList = this.refreshList.bind(this)
+    this.renderPeople = this.renderPeople.bind(this)
+  }
+
+  componentDidMount () {
+    this.refreshList()
+  }
+
+  renderPeople (err, people) {
+    this.setState({
+      error: err,
+      people: people || []
+    })
+  }
+
+  refreshList (err) {
+    this.setState({
+      error: err,
+      addWidgetVisible: false
+    })
+    getPeople(this.renderPeople)
+  }
+
+  render(){
 
   return (
-    <Router>
       <div>
         <h1 className="title">Your Whakapapa</h1>
         <div>
-          <Route exact path='/' component={(props) => <People people={props}/> }/>
-          <Route exact path='/:id/profile' component={(props) => <Profile person={props}/>}/>
+          <PeopleList people={this.state.people}/>
+          {/* <Profile person={this.state.people}/>}/> */}
         </div>
       </div>
-    </Router>
   )
 }
-
-export default App
+}
 
 function capFirst(string)
 {
