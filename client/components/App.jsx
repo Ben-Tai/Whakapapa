@@ -3,6 +3,7 @@ import React from 'react'
 
 import Profile from './Profile'
 import PeopleList from './PeopleList'
+import Modal from './Modal'
 
 import {getPeople} from '../api/api'
 
@@ -13,11 +14,16 @@ export default class App extends React.Component {
     this.state = {
       error:null,
       people: [],
-      errorMessage: ''
+      errorMessage: '',
+      activePerson:null,
+      profileVisible:false,
+      
     }
 
     this.refreshList = this.refreshList.bind(this)
     this.renderPeople = this.renderPeople.bind(this)
+    this.showProfile = this.showProfile.bind(this)
+    this.closeProfile = this.closeProfile.bind(this)
   }
 
   componentDidMount () {
@@ -39,15 +45,32 @@ export default class App extends React.Component {
     getPeople(this.renderPeople)
   }
 
+  showProfile(person){
+    this.setState({
+      activePerson:person,
+      profileVisible:true
+    })
+  }
+
+  closeProfile(person){
+    this.setState({
+      profileVisible:false
+    })
+  }
+
   render(){
 
   return (
       <div>
         <h1 className="title">Your Whakapapa</h1>
-        <div>
-          <PeopleList people={this.state.people}/>
-          {/* <Profile person={this.state.people}/>}/> */}
+        <div className="container">
+          {this.state.people.map(person => {
+                return(     
+              <PeopleList people={person}/>
+            )}
+          )}
         </div>
+        <Modal />
       </div>
   )
 }

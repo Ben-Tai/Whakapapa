@@ -28,7 +28,9 @@
     "express": "^4.16.2",
     "knex": "^0.14.6",
     "mobx": "^4.1.1",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "rodal": "^1.6.3",
+    "sqlite3": "^4.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -37,6 +39,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "cheerio": "^1.0.0-rc.2",
+    "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.1.4",
