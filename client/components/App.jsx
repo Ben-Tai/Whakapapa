@@ -63,13 +63,13 @@ export default class App extends React.Component {
   return (
       <div>
         <h1 className="title">Your Whakapapa</h1>
-        {/* <div className="container">
+        <div className="container">
           {this.state.people.map(person => {
                 return(     
               <PeopleList people={person}/>
             )}
           )}
-        </div> */}
+        </div>
         <Modal />
       </div>
   )

@@ -15,11 +15,19 @@ function getPeople (testConn) {
 //get person
 function getPerson (id,testConn) {
     const conn = testConn || connection
-    return conn('profile')
-    .join('manaariki', 'profile.id', 'manaariki.profile_id') 
+    return conn('manaariki')
+    .join('profile', 'manaariki.profile_id', 'profile.id') 
     .where('manaariki.id', id)
     .select()
     .first()
+      .then(person => {
+        console.log({person})
+        return getChildren(id, testConn)
+          .then(children => {
+            person.children = children
+            return person
+          })
+      })
 }
 
 //get children

@@ -13,20 +13,16 @@ router.get('/', (req, res) => {
     })
 })
 
-// router.get('/people/:id', (req,res) =>{
-//     var id = req.params.id
-//     db.getPerson(id)
-//     .then(person =>{
-//         console.log("this is the id: " + person.id)
-//         db.getChildren(person.id)
-//         .then(children =>{
-//         console.log(children)
-        
-//         res.render('profile', {person:person,children:children})
-//         console.log({person:person})
-//         })
-//     })
-// })
+router.get('/people/:id', (req,res) =>{
+    var id = req.params.id
+    console.log(req.params.id)
+    db.getPerson(id)
+    .then(person =>{
+        console.log(person)
+        res.json(person)
+    })
+    .catch(err => console.log(err))
+})
 
 // router.get('/people/:id/new', (req,res) =>{
 //     var id = req.params.id
