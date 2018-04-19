@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.get('/people/:id', (req,res) =>{
     var id = req.params.id
-    console.log(req.params.id)
+    console.log("routes ", req.params.id)
     db.getPerson(id)
     .then(person =>{
         console.log(person)

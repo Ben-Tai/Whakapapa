@@ -1,9 +1,9 @@
 import React from 'react'
-// import { HashRouter  as Router, Route, Link} from 'react-router-dom'
-
-import Profile from './Profile'
-import PeopleList from './PeopleList'
+import { HashRouter  as Router, Route, Link} from 'react-router-dom'
 import Modal from './Modal'
+
+import PeopleList from './PeopleList'
+
 
 import {getPeople} from '../api/api'
 
@@ -14,16 +14,12 @@ export default class App extends React.Component {
     this.state = {
       error:null,
       people: [],
-      errorMessage: '',
-      activePerson:null,
-      profileVisible:false,
-      
+      errorMessage: '',      
     }
 
     this.refreshList = this.refreshList.bind(this)
     this.renderPeople = this.renderPeople.bind(this)
-    this.showProfile = this.showProfile.bind(this)
-    this.closeProfile = this.closeProfile.bind(this)
+
   }
 
   componentDidMount () {
@@ -45,33 +41,21 @@ export default class App extends React.Component {
     getPeople(this.renderPeople)
   }
 
-  showProfile(person){
-    this.setState({
-      activePerson:person,
-      profileVisible:true
-    })
-  }
-
-  closeProfile(person){
-    this.setState({
-      profileVisible:false
-    })
-  }
 
   render(){
-
   return (
+    <Router>
       <div>
         <h1 className="title">Your Whakapapa</h1>
         <div className="container">
           {this.state.people.map(person => {
                 return(     
-              <PeopleList people={person}/>
+              <PeopleList person={person}/>
             )}
           )}
         </div>
-        <Modal />
       </div>
+    </Router>
   )
 }
 }

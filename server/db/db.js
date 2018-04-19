@@ -18,11 +18,10 @@ function getPerson (id,testConn) {
     return conn('manaariki')
     .join('profile', 'manaariki.profile_id', 'profile.id') 
     .where('manaariki.id', id)
-    .select()
     .first()
       .then(person => {
-        console.log({person})
-        return getChildren(id, testConn)
+        console.log('hi'+ person)
+        getChildren(id, testConn)
           .then(children => {
             person.children = children
             return person
