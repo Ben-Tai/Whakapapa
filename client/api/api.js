@@ -15,8 +15,7 @@ export function getPerson(id, callback){
   console.log({id:id})
   return request.get(url + '/people/' + id)
   .end((err, res) => {
-    console.log(res.body)
-  callback(err, res.body)
+    callback(err, res.body)
   })
 
 }

@@ -19,7 +19,7 @@ export default class Modal extends React.Component {
 
         this.state = { 
             visible: false,
-            // person:[]
+            person: props.person
 
          };
          this.refreshList = this.refreshList.bind(this)
@@ -34,7 +34,10 @@ export default class Modal extends React.Component {
    
     refreshList () {
         console.log(this.props.person.id)
-    getPerson(this.props.person.id, this.show)
+    getPerson(this.props.person.id, (err, person) => {
+        console.log({err, person})
+        this.setState({person})
+    })
     }
 
     show() {
@@ -50,10 +53,11 @@ export default class Modal extends React.Component {
    
  
     render() {
-        const {person} = this.props
+        const {person} = this.state
+        console.log({person})
         return (
             <div>
-                <img onClick={this.show} className="img-circle" src={person.image} alt={person.name}/>
+                <img onClick={this.show.bind(this)} className="img-circle" src={person.image} alt={person.name}/>
                 <a className="name" href={"/people/" + person.id}>{person.name}</a>
  
                 <Rodal visible={this.state.visible} onClose={this.hide.bind(this)} customStyles={customStyles}>

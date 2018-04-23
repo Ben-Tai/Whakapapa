@@ -15,13 +15,11 @@ router.get('/', (req, res) => {
 
 router.get('/people/:id', (req,res) =>{
     var id = req.params.id
-    console.log("routes ", req.params.id)
     db.getPerson(id)
     .then(person =>{
-        console.log(person)
         res.json(person)
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log({err}))
 })
 
 // router.get('/people/:id/new', (req,res) =>{
