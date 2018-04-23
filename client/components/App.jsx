@@ -5,7 +5,7 @@ import Modal from './Modal'
 import PeopleList from './PeopleList'
 
 
-import {getPeople} from '../api/api'
+import {getPerson} from '../api/api'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -13,12 +13,12 @@ export default class App extends React.Component {
 
     this.state = {
       error:null,
-      people: [],
+      person: [],
       errorMessage: '',      
     }
 
     this.refreshList = this.refreshList.bind(this)
-    this.renderPeople = this.renderPeople.bind(this)
+    this.renderPerson = this.renderPerson.bind(this)
 
   }
 
@@ -26,41 +26,35 @@ export default class App extends React.Component {
     this.refreshList()
   }
 
-  renderPeople (err, people) {
+  renderPerson (err, person) {
+      console.log(person)
     this.setState({
       error: err,
-      people: people || []
+      person: person || []
     })
   }
 
   refreshList (err) {
     this.setState({
       error: err,
-      addWidgetVisible: false
     })
-    getPeople(this.renderPeople)
+    getPerson(1,this.renderPerson)
   }
 
 
   render(){
+      console.log(this.state)
   return (
     <Router>
       <div>
         <h1 className="title">Your Whakapapa</h1>
         <div className="container">
-          {this.state.people.map(person => {
-                return(     
-              <PeopleList person={person}/>
-            )}
-          )}
+   
+              <PeopleList person={this.state.person}/>
+         
         </div>
       </div>
     </Router>
   )
 }
-}
-
-function capFirst(string)
-{
-    return string.charAt(0).toUpperCase() + string.slice(1);
 }

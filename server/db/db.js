@@ -36,3 +36,10 @@ function getChildren(id, testConn){
     .select()
 }
 
+// function getChildren (parent_id,testConn) {
+//     const conn = testConn || connection
+//     return conn('manaariki')
+//     .where('parent_id', parent_id)
+//     .select()
+//     .first()
+// }

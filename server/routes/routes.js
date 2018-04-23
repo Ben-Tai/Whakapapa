@@ -13,6 +13,16 @@ router.get('/', (req, res) => {
     })
 })
 
+// router.get('/person/:id', (req, res) => {
+//     db.getPerson(req.params.id)
+//     .then(person=>{
+//         db.getChildren(person.id).then(children => {
+//           person.children = children
+//           res.json(person)
+//         })
+//     })
+// })
+
 router.get('/people/:id', (req,res) =>{
     var id = req.params.id
     db.getPerson(id)

@@ -16,12 +16,13 @@ const customStyles = {
 export default class Modal extends React.Component {
     constructor(props) {
         super(props);
-
+        console.log({modalprops:props})
         this.state = { 
             visible: false,
-            person: props.person
+            person: []
 
          };
+         console.log("this is current state: " + this.state.person)
          this.refreshList = this.refreshList.bind(this)
          this.show = this.show.bind(this)
 
@@ -53,7 +54,7 @@ export default class Modal extends React.Component {
    
  
     render() {
-        const {person} = this.state
+        const person = this.state.person
         console.log({person})
         return (
             <div>
