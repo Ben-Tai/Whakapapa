@@ -14,9 +14,9 @@ const customStyles = {
     margin: 'auto'
 }
 export default class PeopleList extends React.Component{
+    
     constructor (props) {
         super(props)
-        console.log(this.props)
         this.state = {
           error:null,
           person: [],
@@ -32,11 +32,11 @@ export default class PeopleList extends React.Component{
     }
 
     refreshState(props){
-        console.log({person:props})
-    // getPerson(this.props.person.id, (err, person) => {
-    //     console.log({err, person})
-    //     this.setState({person})
-        // })
+        console.log({props:this.props})
+        // getPerson(this.props.person.id, (err, person) => {
+        //     console.log({err, person})
+        //     this.setState({person})
+        //     })
     }
 
     show() {
@@ -51,16 +51,18 @@ export default class PeopleList extends React.Component{
     }
     
     render(){
-        const {person} = this.state
+        console.log(this.props)
+        const person = this.props.person
     return (
-       
+    //    person = this.props.person
     <Router>
             <div>
+                {/* <h1>{person.name}</h1> */}
                 <img onClick={this.show.bind(this)} className="img-circle" src={person.image} alt={person.name}/>
                 <a className="name" href={"/people/" + person.id}>{person.name}</a>
  
-                <Rodal visible={this.state.visible} onClose={this.hide.bind(this)} customStyles={customStyles}>
-                    <Profile person={person}/>
+                <Rodal visible={this.state.visible} onClose={this.hide.bind(this)} customStyles={customStyles}> 
+                  <h1>{this.props.person.name}</h1>  <Profile person={person}/>
                 </Rodal>
             </div>
     </Router>

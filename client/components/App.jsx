@@ -7,54 +7,48 @@ import PeopleList from './PeopleList'
 
 import {getPerson} from '../api/api'
 
-export default class App extends React.Component {
-  constructor (props) {
-    super(props)
+class App extends React.Component{
+    constructor(props){
+        super(props)
 
-    this.state = {
-      error:null,
-      person: [],
-      errorMessage: '',      
+        this.state = {
+            person:[]       
+        }
+
+        this.renderPerson = this.renderPerson.bind(this)
+        
     }
 
-    this.refreshList = this.refreshList.bind(this)
-    this.renderPerson = this.renderPerson.bind(this)
+    componentWillMount(){
+        this.renderPerson()
+        }
 
-  }
+    renderPerson(){
+        getPerson(1,(err,person) => {
+            console.log(person)
+            this.setState({
+                person:person
+            })
+            console.log(this.state.person)
+        })
+    }
 
-  componentDidMount () {
-    this.refreshList()
-  }
-
-  renderPerson (err, person) {
-      console.log(person)
-    this.setState({
-      error: err,
-      person: person || []
-    })
-  }
-
-  refreshList (err) {
-    this.setState({
-      error: err,
-    })
-    getPerson(1,this.renderPerson)
-  }
-
-
-  render(){
-      console.log(this.state)
-  return (
-    <Router>
-      <div>
-        <h1 className="title">Your Whakapapa</h1>
-        <div className="container">
-   
-              <PeopleList person={this.state.person}/>
-         
-        </div>
-      </div>
-    </Router>
+    render(){
+        console.log(this.state)
+        return (
+            <Router>
+            <div>
+                <h1 className="title">My Whakapapa</h1>
+                <p>{this.state.person.name}</p>
+                <div className="container">
+        
+                    <PeopleList person={this.state.person}/>
+                
+                </div> 
+            </div>
+            </Router>
   )
 }
 }
+
+export default App
