@@ -20,52 +20,64 @@ export default class PeopleList extends React.Component{
         this.state = {
           error:null,
           person: [],
+          children: [],
           errorMessage: '',      
         }
-
-        this.refreshState = this.refreshState.bind(this)
+        // this.makeChildren = this.makeChildren.bind(this)
+        // this.renderPerson = this.renderPerson.bind(this)
         this.show = this.show.bind(this)
     }
 
-    componentDidMount(){
-        this.refreshState()
-    }
+    // componentDidMount() {
+    //     (this.renderPerson)
+    //     }
 
-    refreshState(props){
-        console.log({props:this.props})
-        // getPerson(this.props.person.id, (err, person) => {
-        //     console.log({err, person})
-        //     this.setState({person})
-        //     })
-    }
+    // renderPerson(){
+    //     console.log({peoplelist:this.props.person})
+    //     getPerson(this.props.person.id,(err,person) => {
+    //         console.log(person)
+    //         this.setState({
+    //             person:person || []
+    //         })
+    //         console.log(this.state.person)
+    //     })
+    // }
 
     show() {
         this.setState({ 
             visible: true,
-            // person:person || []
         });
     }
  
     hide() {
         this.setState({ visible: false });
     }
-    
+
+    // makeChildren(id){
+    //     getPerson(id,(err,person) => {
+    //         console.log(person)
+    //         this.setState({
+    //             person:person || [],
+    //             children:person.children || []
+    //         })
+    //         console.log(this.state)
+    //     })
+    // }
+
     render(){
-        console.log(this.props)
+        console.log({render:this.props})
         const person = this.props.person
     return (
-    //    person = this.props.person
     <Router>
-            <div>
-                {/* <h1>{person.name}</h1> */}
-                <img onClick={this.show.bind(this)} className="img-circle" src={person.image} alt={person.name}/>
-                <a className="name" href={"/people/" + person.id}>{person.name}</a>
- 
-                <Rodal visible={this.state.visible} onClose={this.hide.bind(this)} customStyles={customStyles}> 
-                  <h1>{this.props.person.name}</h1>  <Profile person={person}/>
-                </Rodal>
-            </div>
-    </Router>
+             <div>
+                 <p>{person.id}</p>
+                 <img /*onClick={this.makeChildren(person.id)}*/ className="img-circle" src={person.image} alt={person.name}/>
+                 <a className="name" href='#' onClick={this.show.bind(this)}>{person.name}</a>
+                 <Rodal visible={this.state.visible} onClose={this.hide.bind(this)} customStyles={customStyles}> 
+                      {/* <Profile person={person}/> */}
+                 </Rodal> 
+             </div>
+     </Router>
         )
 }
 }

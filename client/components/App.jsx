@@ -19,22 +19,19 @@ class App extends React.Component{
         
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.renderPerson()
         }
 
     renderPerson(){
         getPerson(1,(err,person) => {
-            console.log(person)
             this.setState({
                 person:person
             })
-            console.log(this.state.person)
         })
     }
 
     render(){
-        console.log(this.state)
         return (
             <Router>
             <div>
@@ -42,7 +39,7 @@ class App extends React.Component{
                 <p>{this.state.person.name}</p>
                 <div className="container">
         
-                    <PeopleList person={this.state.person}/>
+                <PeopleList person={this.state.person}/>
                 
                 </div> 
             </div>
