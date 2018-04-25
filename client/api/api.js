@@ -3,12 +3,23 @@ import request from 'superagent'
 const url = 'http://localhost:3000/api/v1/router'
 
 export function getPeople (callback) {
-  return request.get(url)
+  return request
+    .get(url)
     .end((err, res) => {
-    callback(err, res.body)
-    console.log(res.body)
-  })
+      callback(err, res.body)
+    })
 }
+
+
+export function getPerson(id, callback){
+  console.log({id:id})
+  return request.get(url + '/people/' + id)
+  .end((err, res) => {
+    callback(err, res.body)
+  })
+
+}
+
 
 // export function addPost (post) {
 //   return request.post('/v1/posts')

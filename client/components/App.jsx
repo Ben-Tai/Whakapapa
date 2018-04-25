@@ -1,82 +1,54 @@
 import React from 'react'
-// import { HashRouter  as Router, Route, Link} from 'react-router-dom'
-
-import Profile from './Profile'
-import PeopleList from './PeopleList'
+import { HashRouter  as Router, Route, Link} from 'react-router-dom'
 import Modal from './Modal'
 
-import {getPeople} from '../api/api'
+import PeopleList from './PeopleList'
 
-export default class App extends React.Component {
-  constructor (props) {
-    super(props)
 
-    this.state = {
-      error:null,
-      people: [],
-      errorMessage: '',
-      activePerson:null,
-      profileVisible:false,
-      
+import {getPerson} from '../api/api'
+
+class App extends React.Component{
+    constructor(props){
+        super(props)
+
+        this.state = {
+            person:1  ,
+            children:[]     
+        }
+
+        this.renderPerson = this.renderPerson.bind(this)
+        
     }
 
-    this.refreshList = this.refreshList.bind(this)
-    this.renderPeople = this.renderPeople.bind(this)
-    this.showProfile = this.showProfile.bind(this)
-    this.closeProfile = this.closeProfile.bind(this)
-  }
+    componentDidMount(){
+        this.renderPerson()
+        }
 
-  componentDidMount () {
-    this.refreshList()
-  }
+    renderPerson(){
+        getPerson(this.state.person,(err,person) => {
+            this.setState({
+                person:person,
+                children:person.children
+            })
+        })
+    }
 
-  renderPeople (err, people) {
-    this.setState({
-      error: err,
-      people: people || []
-    })
-  }
-
-  refreshList (err) {
-    this.setState({
-      error: err,
-      addWidgetVisible: false
-    })
-    getPeople(this.renderPeople)
-  }
-
-  showProfile(person){
-    this.setState({
-      activePerson:person,
-      profileVisible:true
-    })
-  }
-
-  closeProfile(person){
-    this.setState({
-      profileVisible:false
-    })
-  }
-
-  render(){
-
-  return (
-      <div>
-        <h1 className="title">Your Whakapapa</h1>
-        <div className="container">
-          {this.state.people.map(person => {
-                return(     
-              <PeopleList people={person}/>
-            )}
-          )}
-        </div>
-        <Modal />
-      </div>
+    render(){
+        console.log(this.state)
+        return (
+        <Router>
+            <div className="container">
+                <h1 className="title">My Whakapapa</h1>
+                    <div className="container">
+                        <PeopleList 
+                        person={this.state.person}
+                        children={this.state.children}
+                        />
+                    </div> 
+            </div>
+        </Router>
   )
 }
 }
 
-function capFirst(string)
-{
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+export default App
