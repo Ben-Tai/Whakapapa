@@ -23,13 +23,25 @@ router.get('/', (req, res) => {
 //     })
 // })
 
-router.get('/people/:id', (req,res) =>{
-    var id = req.params.id
-    db.getPerson(id)
-    .then(person =>{
-        res.json(person)
+//previous version
+// router.get('/people/:id', (req,res) =>{
+//     var id = req.params.id
+//     db.getPerson(id)
+//     .then(person =>{
+//         res.json(person)
+//     })
+//     .catch(err => console.log({err}))
+// })
+
+//ross' version
+router.get('/person/:id', (req, res) => {
+    db.getPerson(req.params.id)
+    .then(person=>{
+        db.getChildren(person.id).then(children => {
+          person.children = children
+          res.json(person)
+        })
     })
-    .catch(err => console.log({err}))
 })
 
 // router.get('/people/:id/new', (req,res) =>{

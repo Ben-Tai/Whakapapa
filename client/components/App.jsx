@@ -12,7 +12,8 @@ class App extends React.Component{
         super(props)
 
         this.state = {
-            person:[]       
+            person:1  ,
+            children:[]     
         }
 
         this.renderPerson = this.renderPerson.bind(this)
@@ -24,26 +25,28 @@ class App extends React.Component{
         }
 
     renderPerson(){
-        getPerson(1,(err,person) => {
+        getPerson(this.state.person,(err,person) => {
             this.setState({
-                person:person
+                person:person,
+                children:person.children
             })
         })
     }
 
     render(){
+        console.log(this.state)
         return (
-            <Router>
-            <div>
+        <Router>
+            <div className="container">
                 <h1 className="title">My Whakapapa</h1>
-                <p>{this.state.person.name}</p>
-                <div className="container">
-        
-                <PeopleList person={this.state.person}/>
-                
-                </div> 
+                    <div className="container">
+                        <PeopleList 
+                        person={this.state.person}
+                        children={this.state.children}
+                        />
+                    </div> 
             </div>
-            </Router>
+        </Router>
   )
 }
 }

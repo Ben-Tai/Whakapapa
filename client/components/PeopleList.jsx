@@ -17,69 +17,77 @@ export default class PeopleList extends React.Component{
     
     constructor (props) {
         super(props)
+        console.log({props})
         this.state = {
-          error:null,
-          person: [],
-          children: [],
-          errorMessage: '',      
+            person: {},
+            showChildren: false,
+            showModal: false
         }
-        // this.makeChildren = this.makeChildren.bind(this)
-        // this.renderPerson = this.renderPerson.bind(this)
-        this.show = this.show.bind(this)
+
+        // this.renderPerson = this.renderPerson.bind(this, props.person)
+        
     }
 
-    // componentDidMount() {
-    //     (this.renderPerson)
-    //     }
+    componentDidMount() {
+        this.findPerson(this.props.person   )
+    }
 
-    // renderPerson(){
-    //     console.log({peoplelist:this.props.person})
-    //     getPerson(this.props.person.id,(err,person) => {
-    //         console.log(person)
-    //         this.setState({
-    //             person:person || []
-    //         })
-    //         console.log(this.state.person)
-    //     })
-    // }
+    showModal() {
+        this.setState({
+            showModal: true
+        })
+    }
 
-    show() {
+    hideModal() {
+        this.setState({
+            showModal: false
+        })
+    }
+
+    showChildren() {
         this.setState({ 
-            visible: true,
+            showChildren: true,
         });
     }
- 
-    hide() {
-        this.setState({ visible: false });
+
+    findPerson(id){
+        getPerson(id,(err,person) => {
+            console.log(person)
+            this.setState({
+                person:person || []
+            })
+            console.log(this.state)
+        })
     }
 
-    // makeChildren(id){
-    //     getPerson(id,(err,person) => {
-    //         console.log(person)
-    //         this.setState({
-    //             person:person || [],
-    //             children:person.children || []
-    //         })
-    //         console.log(this.state)
-    //     })
-    // }
+    
 
     render(){
-        console.log({render:this.props})
-        const person = this.props.person
-    return (
-    <Router>
-             <div>
-                 <p>{person.id}</p>
-                 <img /*onClick={this.makeChildren(person.id)}*/ className="img-circle" src={person.image} alt={person.name}/>
-                 <a className="name" href='#' onClick={this.show.bind(this)}>{person.name}</a>
-                 <Rodal visible={this.state.visible} onClose={this.hide.bind(this)} customStyles={customStyles}> 
-                      {/* <Profile person={person}/> */}
-                 </Rodal> 
-             </div>
-     </Router>
+        console.log({state:this.state})
+        const person = this.state.person
+        return (
+        <React.Fragment className="people-list">
+            <div className="people-list">
+                <span className="person column is-narrow">
+                <center><img onClick={() => this.showChildren()} className="img-circle" src={person.image} alt={person.name}/>
+                <a className="name" href='#' onClick={this.showModal.bind(this)}>{person.name}</a></center>
+                </span> 
+                <Rodal visible={this.state.showModal} onClose={this.hideModal.bind(this)} customStyles={customStyles}> 
+                {/* <Profile person={p  erson}/> */}
+                </Rodal>
+                
+                    <br />
+                {person && person.children && this.state.showChildren && 
+                <div className="columns is-6 is-multiline">
+                    {person.children.map(child => 
+                        <span className="column is-narrow">
+                            <PeopleList person={child.id} />
+                        </span>)} 
+                </div>}
+            </div>
+        </React.Fragment>    
         )
-}
+    }   
 }
 
 // create a row for each generation and list the name of each person in the that generation for each row

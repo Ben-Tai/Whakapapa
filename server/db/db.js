@@ -29,17 +29,18 @@ function getPerson (id,testConn) {
 }
 
 //get children
-function getChildren(id, testConn){
-  const conn = testConn || connection
-    return conn('manaariki')
-    .where('manaariki.parent_id', id)
-    .select()
-}
-
-// function getChildren (parent_id,testConn) {
-//     const conn = testConn || connection
+// function getChildren(id, testConn){
+//   const conn = testConn || connection
 //     return conn('manaariki')
-//     .where('parent_id', parent_id)
+//     .where('manaariki.parent_id', id)
 //     .select()
-//     .first()
 // }
+
+//ross' get Children
+function getChildren (parent_id,testConn) {
+    const conn = testConn || connection
+    return conn('manaariki')
+    .where('parent_id', parent_id)
+    .select()
+    .first()
+}
