@@ -3,6 +3,7 @@ import request from 'superagent'
 const url = 'http://localhost:3000/api/v1/router'
 
 export function getPeople (callback) {
+  console.log('api call hit:get People')
   return request
     .get(url)
     .end((err, res) => {
@@ -12,8 +13,8 @@ export function getPeople (callback) {
 
 
 export function getPerson(id, callback){
-  console.log({id:id})
-  return request.get(url + '/people/' + id)
+  console.log({"id":id})
+  return request.get(url + '/person/' + id)
   .end((err, res) => {
     callback(err, res.body)
   })

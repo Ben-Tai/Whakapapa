@@ -22,10 +22,13 @@ class App extends React.Component{
 
     componentDidMount(){
         this.renderPerson()
+        console.log("listening")
         }
 
     renderPerson(){
+        console.log("react call first person")
         getPerson(this.state.person,(err,person) => {
+
             this.setState({
                 person:person,
                 children:person.children

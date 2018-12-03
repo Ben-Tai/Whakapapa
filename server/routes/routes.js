@@ -35,6 +35,7 @@ router.get('/', (req, res) => {
 
 //ross' version
 router.get('/person/:id', (req, res) => {
+    console.log(req.params.id)
     db.getPerson(req.params.id)
     .then(person=>{
         db.getChildren(person.id).then(children => {
